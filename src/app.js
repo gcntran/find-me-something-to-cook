@@ -1,6 +1,6 @@
 // src/app.js
 import { getRandomRecipes, getRecipesByIngredient } from './api.js';
-import { displayRecipes } from './dom.js';
+import { displayRecipes, displayNotebook } from './dom.js';
 
 const searchBtn = document.getElementById('searchBtn');
 const clearBtn = document.getElementById('clearBtn');
