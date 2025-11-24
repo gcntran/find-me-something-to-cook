@@ -8,7 +8,7 @@ const refreshBtn = document.getElementById('refreshBtn');
 const results = document.getElementById('results');
 const notebookContainer = document.getElementById('notebook');
 
-// Fake notebook storage
+// Notebook storage in localStorage
 let notebook = JSON.parse(localStorage.getItem('notebook')) || [];
 
 // Save recipe to notebook
@@ -17,7 +17,7 @@ function saveToNotebook(recipe) {
         notebook.push(recipe);
         localStorage.setItem('notebook', JSON.stringify(notebook));
         alert(`${recipe.strMeal} saved to notebook!`);
-        displayRecipes(notebook, notebookContainer, deleteFromNotebook);
+        displayNotebook(notebook, notebookContainer, deleteFromNotebook);
     } else {
         alert(`${recipe.strMeal} is already in your notebook.`);
     }
@@ -26,18 +26,19 @@ function saveToNotebook(recipe) {
 // Delete recipe from notebook
 function deleteFromNotebook(idMeal) {
     const recipeToDelete = notebook.find(fav => fav.idMeal === idMeal);
-    notebook = notebook.filter(fav => fav.idMeal !== recipe.idMeal);
+    notebook = notebook.filter(fav => fav.idMeal !== idMeal);
     localStorage.setItem('notebook', JSON.stringify(notebook));
     if (recipeToDelete) {
-    alert(`${recipeToDelete.strMeal} removed from notebook.`);
-    displayRecipes(notebook, notebookContainer, deleteFromNotebook);
+        alert(`${recipeToDelete.strMeal} removed from notebook.`);
+    }
+    displayNotebook(notebook, notebookContainer, deleteFromNotebook);
 }
 
 // Show multiple random recipes on page load
 window.addEventListener('load', async () => {
     const randomRecipes = await getRandomRecipes(5);
     displayRecipes(randomRecipes, results, saveToNotebook);
-    displayRecipes(notebook, notebookContainer, deleteFromNotebook);
+    displayNotebook(notebook, notebookContainer, deleteFromNotebook);
 });
 
 // Search recipes by ingredient
@@ -61,4 +62,3 @@ refreshBtn.addEventListener('click', async () => {
     const randomRecipes = await getRandomRecipes(5);
     displayRecipes(randomRecipes, results, saveToNotebook);
 });
-}

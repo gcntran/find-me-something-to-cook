@@ -4,10 +4,10 @@
   "description": "A website that helps you to look for something to cook.",
   "main": "index.js",
   "scripts": {
-  "start": "echo \"Open index.html in your browser\"",
-  "build": "esbuild src/app.js --bundle --outfile=dist/bundle.js",
-  "watch": "esbuild src/app.js --bundle --outfile=dist/bundle.js --watch"
-},
+    "start": "echo \"Open index.html in your browser\"",
+    "build": "esbuild src/app.js --bundle --outfile=dist/bundle.js",
+    "watch": "esbuild src/app.js --bundle --outfile=dist/bundle.js --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/imswpotato/find-me-something-to-cook.git"
