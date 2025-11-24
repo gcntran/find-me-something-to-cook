@@ -27,7 +27,34 @@ export function displayRecipes(recipes, container, onSave) {
 
         container.appendChild(recipeCard);
     });
+}
 
     // Display Notebook
-    
-}
+    export function displayNotebook(notebook, container, onDelete) {
+        container.innerHTML = ''; // Clear previous content
+
+        if (!notebook || notebook.length === 0) {
+            container.innerHTML = '<p>Your Notebook is empty.</p>';
+            return;
+        }
+
+        notebook.forEach(recipe => {
+            const recipeCard = document.createElement('div');
+            recipeCard.classList.add('recipe-card');
+
+            recipeCard.innerHTML = `
+                <h3>${recipe.strMeal}</h3>
+                <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" class="recipe-image"/>
+                <a href="https://www.themealdb.com/meal/${recipe.idMeal}" target="_blank" class="recipe-link">View Recipe</a>
+                <button class="delete-recipe-button">Delete from Notebook</button>
+                `;
+
+            // Delete button functionality
+            recipeCard.querySelector('.delete-recipe-button').addEventListener('click', () => {
+                onDelete(recipe.idMeal);
+            });
+
+            container.appendChild(recipeCard);
+        });
+    }
+
