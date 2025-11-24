@@ -11,6 +11,7 @@ const notebookContainer = document.getElementById('notebook');
 // Fake notebook storage
 let notebook = JSON.parse(localStorage.getItem('notebook')) || [];
 
+// Save recipe to notebook
 function saveToNotebook(recipe) {
     if (!notebook.find(fav => fav.idMeal === recipe.idMeal)) {
         notebook.push(recipe);
@@ -22,10 +23,13 @@ function saveToNotebook(recipe) {
     }
 }
 
+// Delete recipe from notebook
 function deleteFromNotebook(idMeal) {
+    const recipeToDelete = notebook.find(fav => fav.idMeal === idMeal);
     notebook = notebook.filter(fav => fav.idMeal !== recipe.idMeal);
     localStorage.setItem('notebook', JSON.stringify(notebook));
-    alert(`${recipe.strMeal} removed from notebook.`);
+    if (recipeToDelete) {
+    alert(`${recipeToDelete.strMeal} removed from notebook.`);
     displayRecipes(notebook, notebookContainer, deleteFromNotebook);
 }
 
@@ -57,4 +61,4 @@ refreshBtn.addEventListener('click', async () => {
     const randomRecipes = await getRandomRecipes(5);
     displayRecipes(randomRecipes, results, saveToNotebook);
 });
-
+}
