@@ -117,7 +117,7 @@ function saveToNotebook(recipe, callback) {
 
         // Run callback if provided
         if (typeof callback === 'function') {
-            callback(null, recipe); // success: no error, return recipe
+            callback(null, recipe); // Success: no error, return recipe
         }
     } else {
         // Run callback with error
