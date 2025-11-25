@@ -36,13 +36,34 @@ function deleteFromNotebook(idMeal) {
 
 // Show multiple random recipes on page load
 window.addEventListener('load', async () => {
-    const randomRecipes = await getRandomRecipes(3);
-    displayRecipes(randomRecipes, results, saveToNotebook);
-    displayNotebook(notebook, notebookContainer, deleteFromNotebook);
+    try {
+        const randomRecipes = await getRandomRecipes(3);
+        console.log('Random Recipes on Load:', randomRecipes);
+        displayRecipes(randomRecipes, results, saveToNotebook);
+        displayNotebook(notebook, notebookContainer, deleteFromNotebook);
+    } catch (error) {
+        console.error('Error loading initial recipes:', error);
+        results.innerHTML = '<p>Error loading recipes. Please try again later.</p>';
+    }
 });
 
 // Search recipes by ingredient
-searchBtn.addEventListener('click', async () => {
+function fetchRecipesByIngredient() {
+    getRecipesByIngredient(ingredient)
+        .then(recipes => {
+            if (recipes && recipes.length > 0) {
+                cancelIdleCallback(recipes.slice(0, 3));
+            } else {
+                results.innerHTML = '<p>No recipes found for the given ingredient.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching recipes:', error);
+            results.innerHTML = '<p>Error fetching recipes. Please try again later.</p>';
+        });
+}
+
+searchBtn.addEventListener('click', () => {
     const inputEl = document.getElementById('ingredientInput');
     if (!inputEl) {
         alert('Ingredient input not found.');
@@ -55,13 +76,9 @@ searchBtn.addEventListener('click', async () => {
         return;
     }
 
-    const recipes = await getRecipesByIngredient(ingredient);
-    if (recipes && recipes.length > 0) {
-        const limitedRecipes = recipes.slice(0, 3);
+    fetchRecipesByIngredient(ingredient, (limitedRecipes) => {
         displayRecipes(limitedRecipes, results, saveToNotebook);
-    } else {
-        results.innerHTML = '<p>No recipes found for that ingredient.</p>';
-    }
+    });
 });
 
 // Clear search results
@@ -70,7 +87,12 @@ clearBtn.addEventListener('click', () => {
 });
 
 // Refresh random recipes
-refreshBtn.addEventListener('click', async () => {
-    const randomRecipes = await getRandomRecipes(3);
-    displayRecipes(randomRecipes, results, saveToNotebook);
+refreshBtn.addEventListener('click', () => {
+    getRandomRecipes(3)
+        .then(randomRecipes => {
+            displayRecipes(randomRecipes, results, saveToNotebook);
+        })
+        .catch(error => {
+            console.error("Error refreshing recipes:", error);
+        });
 });
