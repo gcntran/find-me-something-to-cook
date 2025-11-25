@@ -71,8 +71,8 @@ searchBtn.addEventListener('click', async () => {
         if (recipes && recipes.length > 0) {
             const limitedRecipes = recipes.slice(0, 3);
 
-            // Show loading message immediately
-            results.innerHTML = '<p>🔄 Searching recipes... please wait</p>';
+            // Show spinner and loading message immediately
+            results.innerHTML = '<div class="spinner"></div><h3>Finding something yummy... please wait</h3>';
 
             // Wait 2 seconds before showing results
             delay(2000).then(() => {
@@ -80,11 +80,11 @@ searchBtn.addEventListener('click', async () => {
             });
 
         } else {
-            results.innerHTML = '<p>No recipes found for that ingredient.</p>';
+            results.innerHTML = '<p>Oops! Not sure how to cook that...</p>';
         }
     } catch (error) {
         console.error("Error fetching recipes:", error);
-        results.innerHTML = '<p>⚠️ Something went wrong. Try again later.</p>';
+        results.innerHTML = '<p>Oops! The kitchen is burning. Try again later.</p>';
     }
 });
 
