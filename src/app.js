@@ -1,7 +1,10 @@
 // src/app.js
+
+// Import necessary functions
 import { getRandomRecipes, getRecipesByIngredient } from './api.js';
 import { displayRecipes, displayNotebook } from './dom.js';
 
+// Get DOM elements
 const searchBtn = document.getElementById('searchBtn');
 const clearBtn = document.getElementById('clearBtn');
 const refreshBtn = document.getElementById('refreshBtn');
@@ -17,6 +20,7 @@ function saveToNotebook(recipe) {
         notebook.push(recipe);
         localStorage.setItem('notebook', JSON.stringify(notebook));
         alert(`${recipe.strMeal} saved to notebook!`);
+        console.log('Notebook after saving:', notebook);
         displayNotebook(notebook, notebookContainer, deleteFromNotebook);
     } else {
         alert(`${recipe.strMeal} is already in your notebook.`);
@@ -31,6 +35,7 @@ function deleteFromNotebook(idMeal) {
     if (recipeToDelete) {
         alert(`${recipeToDelete.strMeal} removed from notebook.`);
     }
+    console.log('Notebook after deletion:', notebook);
     displayNotebook(notebook, notebookContainer, deleteFromNotebook);
 }
 
@@ -47,7 +52,7 @@ window.addEventListener('load', async () => {
     }
 });
 
-// Delay function
+// Delay function using promise
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -59,6 +64,7 @@ searchBtn.addEventListener('click', async () => {
         alert('Ingredient input not found.');
         return;
     }
+    console.log("Searching for ingredient:", inputEl.value);
 
     const ingredient = inputEl.value.trim();
     if (!ingredient) {
@@ -80,7 +86,8 @@ searchBtn.addEventListener('click', async () => {
             `;
             console.log("Recipes returned:", recipes);
             console.log("Limited recipes:", limitedRecipes);
-            // Wait 2 seconds before showing results
+
+            // Wait 2 seconds before showing results, using delay
             delay(2000).then(() => {
                 try {
                     displayRecipes(limitedRecipes, results, saveToNotebook);

@@ -30,5 +30,4 @@ export async function getRecipesByIngredient(ingredient) {
         console.error("Error fetching recipes by ingredient:", error);
         return null;
     }
-    }
-        
+}
