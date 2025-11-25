@@ -176,6 +176,38 @@ header p {
     margin: 20px auto;
 }
 
+/* Spinner wrapper */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    /* stack spinner and text vertically */
+    align-items: center;
+    /* center horizontally */
+    justify-content: center;
+    /* center vertically if container has height */
+    text-align: center;
+    margin: 20px auto;
+}
+
+/* Spinner itself */
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #805436;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+    /* space between spinner and text */
+}
+
+/* Loading text */
+.spinner-container h3 {
+    font-size: 1.2rem;
+    color: #805436;
+    margin: 0;
+}
+
 /* Spin animation */
 @keyframes spin {
     0% {
@@ -189,8 +221,15 @@ header p {
 
 /* Fade-in animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive screen */
