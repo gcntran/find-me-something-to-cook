@@ -1,4 +1,5 @@
 // src/dom.js
+// This is where we manipulate the DOM to display recipes and the notebook
 
 // Display recipes (search results or random suggestions) in the DOM
 export function displayRecipes(recipes, container, onSave) {

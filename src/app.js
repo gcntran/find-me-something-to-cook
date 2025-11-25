@@ -1,4 +1,5 @@
 // src/app.js
+// This is where the main functionality of the app is implemented
 
 // Import necessary functions
 import { getRandomRecipes, getRecipesByIngredient } from './api.js';

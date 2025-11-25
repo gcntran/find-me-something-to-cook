@@ -1,4 +1,5 @@
 // src/api.js
+// Place for all API calls
 
 // Fetch data from TheMealDB API
 // Fetch a random recipe

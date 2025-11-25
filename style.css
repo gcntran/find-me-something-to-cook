@@ -24,10 +24,6 @@ p {
     color: #000000;
 }
 
-.search-section input::placeholder {
-    font-family: 'Courier New', Courier, monospace;
-}
-
 /* Header */
 header {
     text-align: center;
@@ -45,11 +41,6 @@ header p {
 }
 
 /* Search section */
-#ingredientsInput button {
-    font-family: 'Courier New', Courier, monospace;
-    width: 170px;
-}
-
 .search-section {
     display: flex;
     flex-direction: column;
@@ -69,6 +60,11 @@ header p {
     width: 500px;
     margin-bottom: 10px;
 }
+
+.search-section input::placeholder {
+    font-family: 'Courier New', Courier, monospace;
+}
+
 
 .search-buttons button {
     font-family: 'Courier New', Courier, monospace;
@@ -94,7 +90,12 @@ header p {
     background: #888888;
 }
 
-/* Random recipe cards */
+#ingredientsInput button {
+    font-family: 'Courier New', Courier, monospace;
+    width: 170px;
+}
+
+/* Recipe cards */
 #results {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -198,12 +199,9 @@ header p {
 /* Spinner wrapper */
 .spinner-container {
     display: flex;
-    flex-direction: column;
-    /* stack spinner and text vertically */
+    flex-direction: column; /* stack spinner and text vertically */
     align-items: center;
-    /* center horizontally */
     justify-content: center;
-    /* center vertically if container has height */
     text-align: center;
     margin: 20px auto;
 }
@@ -216,8 +214,7 @@ header p {
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-    margin-bottom: 10px;
-    /* space between spinner and text */
+    margin-bottom: 10px; 
 }
 
 /* Loading text */
@@ -256,23 +253,19 @@ header p {
 @media (max-width: 1024px) {
     .search-section {
         width: 90%;
-        /* shrink search section */
     }
 
     .search-section input {
         width: 100%;
-        /* input fills container */
     }
 
     #results {
         width: 95%;
-        /* grid adapts */
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .recipe-card {
         width: 100%;
-        /* cards stretch nicely */
         max-width: 300px;
     }
 }
@@ -292,6 +285,7 @@ header p {
         font-size: 1rem;
     }
 
+    /* Search section */
     .search-section {
         width: 100%;
         padding: 5px;
@@ -305,20 +299,18 @@ header p {
     .search-buttons {
         display: flex;
         flex-direction: column;
-        /* stack buttons vertically */
         width: 100%;
         gap: 8px;
     }
 
     .search-buttons button {
         width: 100%;
-        /* full-width buttons */
         font-size: 0.9rem;
     }
 
+    /* Recipe cards */
     #results {
         grid-template-columns: 1fr;
-        /* single column grid */
         width: 100%;
     }
 
