@@ -75,7 +75,7 @@ searchBtn.addEventListener('click', async () => {
             results.innerHTML = `
             <div class="spinner-container">
             <div class="spinner"></div>
-            <h3>Finding something yummy... please wait</h3>
+            <h3>Looking for something yummy... please wait</h3>
             </div>
             `;
             console.log("Recipes returned:", recipes);
